@@ -14,7 +14,7 @@
 	<name>sales-book-converter</name>
 	<description>Conversion of the Sales ledger from 1C for the taxpayer</description>
 	<properties>
-		<java.version>16</java.version>
+		<java.version>1.8</java.version>
 		<!--webjars-->
 		<webjars-bootstrap.version>4.6.1</webjars-bootstrap.version>
 		<webjars-jquery.version>3.6.0</webjars-jquery.version>
@@ -149,8 +149,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>16</source>
-					<target>16</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
