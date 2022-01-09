@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Страница приложения!</title>
+    <link rel="stylesheet" href="webjars/bootstrap/4.6.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<html>
+<div class="errorPage">
+    <h3>Ошибка приложения</h3>
+    <p th:if="${url}">
+        <b>Page:</b> <span th:text="${url}">Page URL</span>
+    </p>
+    <p th:if="${timestamp}" id='created'>
+        <b>Occurred:</b> <span th:text="${timestamp}">Timestamp</span>
+    </p>
+    <p th:if="${status}">
+        <b>Response Status:</b> <span th:text="${status}">status-code</span> <span
+            th:if="${error}" th:text="'('+${error}+')'">error ...</span>
+    </p>
+    <p th:text="${'Details: ' + message}"></p>
+</div>
+</html>

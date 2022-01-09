@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>Конвертер Книги продаж 1С Бухгалтерии в Налогоплатильщик ЮЛ</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="webjars/bootstrap/4.6.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<p><img th:src="@{images/logo.jpg}" width="300" height="100" alt="" src=""/></p>
+
+<form method="POST" enctype="multipart/form-data" action="convert">
+    <div class="form-group">
+        <label for="exampleFormControlFile1">Выбрать файл Книги продаж 1С Бухгалтерии</label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Преобразовать</button>
+</form>
+</body>
+</html>
