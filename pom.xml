@@ -14,7 +14,7 @@
 	<name>sales-book-converter</name>
 	<description>Conversion of the Sales ledger from 1C for the taxpayer</description>
 	<properties>
-		<java.version>15</java.version>
+		<java.version>1.8</java.version>
 		<!--webjars-->
 		<webjars-bootstrap.version>4.6.1</webjars-bootstrap.version>
 		<webjars-jquery.version>3.6.0</webjars-jquery.version>
@@ -70,7 +70,6 @@
 			<artifactId>jaxb-impl</artifactId>
 			<version>3.0.1</version>
 		</dependency>
-
 		<!-- Webjars (static dependencies distributed as JAR files) -->
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -114,15 +113,12 @@
 			<artifactId>noty</artifactId>
 			<version>${webjars-noty.version}</version>
 		</dependency>
-
-
 		<!--Lombok-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.22</version>
 		</dependency>
-
 		<!--Test-->
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -136,9 +132,7 @@
 			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -155,5 +149,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
