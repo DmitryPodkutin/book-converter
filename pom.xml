@@ -14,7 +14,7 @@
 	<name>sales-book-converter</name>
 	<description>Conversion of the Sales ledger from 1C for the taxpayer</description>
 	<properties>
-		<java.version>17.0.1</java.version>
+		<java.version>15</java.version>
 		<!--webjars-->
 		<webjars-bootstrap.version>4.6.1</webjars-bootstrap.version>
 		<webjars-jquery.version>3.6.0</webjars-jquery.version>
