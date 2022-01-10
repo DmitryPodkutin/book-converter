@@ -12,18 +12,18 @@ public class MemoryStorage implements Storage {
     private final Map<String, File> storage = new ConcurrentHashMap<>();
 
     @Override
-    public File save(File file) {
-        storage.put(file.getName(), file);
-        return get(file.getName());
+    public File save(String userIpAddress, File file) {
+        storage.put(userIpAddress, file);
+        return get(userIpAddress);
     }
 
     @Override
-    public boolean delete(String fileName) {
-        return storage.remove(fileName) != null;
+    public boolean delete(String userIpAddress) {
+        return storage.remove(userIpAddress) != null;
     }
 
     @Override
-    public File get(String fileName) {
-        return storage.get(fileName);
+    public File get(String userIpAddress) {
+        return storage.get(userIpAddress);
     }
 }

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
+import javax.servlet.http.HttpServletRequest;
 import java.net.MalformedURLException;
 
 @Controller
@@ -30,19 +30,20 @@ public class UiController {
 
     // https://betacode.net/11765/spring-boot-file-download
     @PostMapping("/convert")
-    public String convert(@RequestParam("file") MultipartFile file) {
-        File savedFile = service.saveFile(service.getConvertFile(FileUtil.multipartToFile(file, file.getOriginalFilename())));
-        return "redirect:file/" + savedFile.getName();
+    public String convert(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+        String userIpAddress = request.getRemoteAddr();
+        service.saveFile(userIpAddress, service.getConvertFile(FileUtil.multipartToFile(file, file.getOriginalFilename())));
+        return "redirect:file/" + userIpAddress;
     }
 
     //https://stackoverflow.com/questions/5673260/downloading-a-file-from-spring-controllers
-    @GetMapping("/file/{fileName}")
+    @GetMapping("/file/{userIpAddress}")
     @ResponseBody
-    public ResponseEntity<Resource> getConvertFile(@PathVariable String fileName) {
+    public ResponseEntity<Resource> getConvertFile(@PathVariable String userIpAddress) {
         Resource file = null;
         try {
-            file = new UrlResource(service.getFile(fileName).toURI());
-            service.deleteFile(fileName);
+            file = new UrlResource(service.getFile(userIpAddress).toURI());
+            service.deleteFile(userIpAddress);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

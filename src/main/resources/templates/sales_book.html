@@ -11,9 +11,9 @@
 
 <p><img th:src="@{images/logo.jpg}" width="300" height="100" alt="" src=""/></p>
 
-<form method="POST" enctype="multipart/form-data" action="convert">
+<form method="GET" enctype="multipart/form-data" action="convert">
     <div class="form-group">
-        <label for="exampleFormControlFile1">Выбрать файл Книги продаж 1С Бухгалтерии</label>
+        <label for="exampleFormControlFile1">Выберите файл Книги продаж (1С Бухгалтерия)</label>
         <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file">
     </div>
     <button type="submit" class="btn btn-primary mb-2">Преобразовать</button>

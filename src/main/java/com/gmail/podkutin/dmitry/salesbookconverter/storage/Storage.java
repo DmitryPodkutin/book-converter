@@ -3,9 +3,9 @@ package com.gmail.podkutin.dmitry.salesbookconverter.storage;
 import java.io.File;
 
 public interface Storage {
-    File save(File file);
+    File save(String userIpAddress, File file);
 
-    boolean delete(String fileName);
+    boolean delete(String userIpAddress);
 
-    File get(String fileName);
+    File get(String userIpAddress);
 }

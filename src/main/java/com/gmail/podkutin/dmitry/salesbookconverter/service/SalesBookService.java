@@ -29,18 +29,18 @@ public class SalesBookService {
         this.storage = storage;
     }
 
-    public File getFile(String fileName) {
-        checkNotFound(storage.get(fileName), "File " + fileName + " Not Found");
-        return storage.get(fileName);
+    public File getFile(String userIpAddress) {
+        checkNotFound(storage.get(userIpAddress), "File " + userIpAddress + " Not Found");
+        return storage.get(userIpAddress);
     }
 
-    public File saveFile(File file) {
+    public File saveFile(String userIpAddress, File file) {
         Assert.notNull(file, "file must not be null");
-        return storage.save(file);
+        return storage.save(userIpAddress, file);
     }
 
-    public boolean deleteFile(String fileName) {
-        return checkNotFound(storage.delete(fileName), fileName + "not delete  because not found");
+    public boolean deleteFile(String userIpAddress) {
+        return checkNotFound(storage.delete(userIpAddress), userIpAddress + "not delete  because not found");
     }
 
     public File getConvertFile(File incoming) {
