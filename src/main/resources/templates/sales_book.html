@@ -1,22 +1,81 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
-    <title>Конвертер Книги продаж 1С Бухгалтерии в Налогоплатильщик ЮЛ</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Конвертер Книги продаж</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" href="webjars/bootstrap/4.6.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="webjars/datatables/1.11.3/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="webjars/noty/3.1.4/lib/noty.css"/>
     <link rel="stylesheet" href="webjars/bootstrap/4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
+
+    <script src="webjars/jquery/3.6.0/jquery.min.js" defer></script>
+    <script src="webjars/bootstrap/4.6.1/js/bootstrap.min.js" defer></script>
+    <script src="webjars/datatables/1.11.3/js/jquery.dataTables.min.js" defer></script>
+    <script src="webjars/datatables/1.11.3/js/dataTables.bootstrap4.min.js" defer></script>
+    <script src="webjars/noty/3.1.4/lib/noty.min.js" defer></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 </head>
 <body>
-
 <p><img th:src="@{images/logo.jpg}" width="300" height="100" alt="" src=""/></p>
-
 <form method="POST" enctype="multipart/form-data" action="convert">
     <div class="form-group">
-        <label for="exampleFormControlFile1">Выберите файл Книги продаж (1С Бухгалтерия)</label>
-        <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file">
+        <div><label for="file-uploader">Выберите файл Книги продаж (1С Бухгалтерия)</label></div>
+        <input type="file" id="file-uploader" name="file">
     </div>
     <button type="submit" class="btn btn-primary mb-2">Преобразовать</button>
 </form>
+<th:block th:if="${result}!=null">
+    <form method=GET enctype="multipart/form-data" action="get_converted_file">
+        <button type="submit" id="submit" class="btn btn-primary mb-2">Сохранить файл</button>
+    </form>
+</th:block>
+
 </body>
+<script>
+    // <!-- https://coderoad.ru/53683804/Как-добавить-уведомление-об-успехе-после-отправки-формы-->
+    $(document).ready(function () {
+        const file_converted = "[[${file_converted}]] ";
+        const information = "[[${information}]] ";
+        const action = "[[${result}]]";
+
+        // https://webformyself.com/10-poleznyx-sovetov-dlya-veb-razrabotchikov-po-zagruzke-fajlov-v-html/
+        const fileUploader = document.getElementById('file-uploader');
+        fileUploader.addEventListener('change', (event) => {
+            const files = event.target.files;
+            if (files != null) {
+                showNoty('Information', "Выбран файл : " + files.item(0).name, 'info')
+            }
+        });
+
+        if (action === 'converted') {
+            showNoty('File converted', file_converted, 'success')
+        } else if (action === 'error') {
+            showNoty('Error saving file', "ERROR : File Not Saved", 'error');
+        }
+
+        const save_button = document.querySelector("#submit");
+        if (save_button != null) {
+            save_button.onclick = function () {
+                showNoty('Information', information, 'info')
+                this.style.display = 'none';
+            }
+        }
+
+        function showNoty(title, text, type,) {
+            new Noty({
+                title: title,
+                text: text,
+                type: type,
+                theme: 'bootstrap-v4',
+                layout: 'topRight',
+                timeout: 5000
+            }).show();
+        }
+    });
+</script>
 </html>

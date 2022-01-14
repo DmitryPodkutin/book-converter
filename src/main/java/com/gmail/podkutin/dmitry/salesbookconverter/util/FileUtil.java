@@ -7,14 +7,14 @@ import java.io.IOException;
 
 public class FileUtil {
 
-    public static File multipartToFile(MultipartFile multipart, String fileName) {
-        File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + fileName);
+    public static File multipartFileToFile(MultipartFile multipartFile, String fileName) {
+        File file = new File(System.getProperty("java.io.tmpdir") + "/" + fileName);
         try {
-            multipart.transferTo(convFile);
+            multipartFile.transferTo(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return convFile;
+        return file;
     }
 
     public static File getEmptyFile(String fileName) {

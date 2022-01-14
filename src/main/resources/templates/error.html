@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>Страница приложения!</title>
+    <title>Ошибка приложения!</title>
     <link rel="stylesheet" href="webjars/bootstrap/4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
@@ -22,4 +22,7 @@
     </p>
     <p th:text="${'Details: ' + message}"></p>
 </div>
+<form action="/" target="_self">
+    <button type="submit" class="btn btn-primary mb-2">Вернутся на страницу загрузки</button>
+</form>
 </html>
