@@ -16,11 +16,11 @@ public class SalesDetails {
     @XmlAttribute(name = "НомПП")
     private String number;
 
-    @XmlAttribute(name = "НомерСчФ")
-    private String invoiceNumber;
-
     @XmlAttribute(name = "ДатаСчФ")
     private String dateInvoice;
+
+    @XmlAttribute(name = "НомерСчФ")
+    private String invoiceNumber;
 
     @XmlAttribute(name = "НаимПок")
     private String buyersName;
@@ -35,7 +35,7 @@ public class SalesDetails {
     private String KPP;
 
     @XmlAttribute(name = "КодОКВ")
-    private String codeOfOKV;
+    private String codeOfOKV = "643";
 
     @XmlAttribute(name = "СтТовУчНалВсего")
     private String valueOfGoodsIncludingTax;
