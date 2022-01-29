@@ -1,4 +1,4 @@
-package com.gmail.podkutin.dmitry.salesbookconverter.util;
+package com.gmail.podkutin.dmitry.bookconverter.util;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
