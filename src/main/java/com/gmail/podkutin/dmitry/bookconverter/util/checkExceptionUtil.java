@@ -1,6 +1,8 @@
-package com.gmail.podkutin.dmitry.salesbookconverter.util;
+package com.gmail.podkutin.dmitry.bookconverter.util;
 
-import com.gmail.podkutin.dmitry.salesbookconverter.util.exception.NotFoundException;
+import com.gmail.podkutin.dmitry.bookconverter.util.exception.NotFoundException;
+
+import java.io.File;
 
 public class checkExceptionUtil {
 
@@ -14,5 +16,11 @@ public class checkExceptionUtil {
             throw new NotFoundException("File with name" + msg);
         }
         return true;
+    }
+
+    public static void checkFileForEmpty(File file) {
+        if (FileUtil.isFileEmpty(file)) {
+            throw new RuntimeException("File is empty");
+        }
     }
 }

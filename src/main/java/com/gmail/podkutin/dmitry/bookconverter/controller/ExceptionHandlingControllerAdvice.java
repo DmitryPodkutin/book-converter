@@ -1,6 +1,6 @@
-package com.gmail.podkutin.dmitry.salesbookconverter.controller;
+package com.gmail.podkutin.dmitry.bookconverter.controller;
 
-import com.gmail.podkutin.dmitry.salesbookconverter.util.exception.ValidationException;
+import com.gmail.podkutin.dmitry.bookconverter.util.exception.ValidationException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
