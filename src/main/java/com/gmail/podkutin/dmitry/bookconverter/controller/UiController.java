@@ -1,7 +1,7 @@
-package com.gmail.podkutin.dmitry.salesbookconverter.controller;
+package com.gmail.podkutin.dmitry.bookconverter.controller;
 
-import com.gmail.podkutin.dmitry.salesbookconverter.service.SalesBookService;
-import com.gmail.podkutin.dmitry.salesbookconverter.util.FileUtil;
+import com.gmail.podkutin.dmitry.bookconverter.service.BookService;
+import com.gmail.podkutin.dmitry.bookconverter.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -25,13 +25,13 @@ import java.net.MalformedURLException;
 @PropertySource("classpath:messages.properties")
 public class UiController {
 
-    private final SalesBookService service;
+    private final BookService service;
     @Value("${file_converted}")
     private String file_converted;
     @Value("${information}")
     private String information;
 
-    public UiController(@Autowired SalesBookService service) {
+    public UiController(@Autowired BookService service) {
         this.service = service;
     }
 
@@ -59,14 +59,13 @@ public class UiController {
     @ResponseBody
     public ResponseEntity<Resource> getConvertedFile(HttpServletRequest request) {
         String userIpAddress = request.getRemoteAddr();
-        Resource file = null;
         try {
-            file = new UrlResource(service.getFile(userIpAddress).toURI());
+            Resource file = new UrlResource(service.getFile(userIpAddress).toURI());
             service.deleteFile(userIpAddress);
+            return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, FileUtil.getContentDispositionWithCyrillicFileName(file)).body(file);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                "attachment; filename=\"" + "result.xml" + "\"").body(file);
+        return null;
     }
 }
