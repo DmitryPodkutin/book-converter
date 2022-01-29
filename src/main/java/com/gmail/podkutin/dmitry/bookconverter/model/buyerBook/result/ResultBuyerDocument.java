@@ -1,10 +1,10 @@
-package com.gmail.podkutin.dmitry.salesbookconverter.model.buyerBook.result;
+package com.gmail.podkutin.dmitry.bookconverter.model.buyerBook.result;
 
-import com.gmail.podkutin.dmitry.salesbookconverter.model.InformationAboutOrganization;
-import com.gmail.podkutin.dmitry.salesbookconverter.model.Signer;
-import com.gmail.podkutin.dmitry.salesbookconverter.model.buyerBook.BuyerBookDetails;
-import com.gmail.podkutin.dmitry.salesbookconverter.model.buyerBook.incoming.IncomingBuyerDocument;
-import com.gmail.podkutin.dmitry.salesbookconverter.model.buyerBook.ResultBuyersDetails;
+import com.gmail.podkutin.dmitry.bookconverter.model.InformationAboutOrganization;
+import com.gmail.podkutin.dmitry.bookconverter.model.Signer;
+import com.gmail.podkutin.dmitry.bookconverter.model.buyerBook.BuyerBookDetails;
+import com.gmail.podkutin.dmitry.bookconverter.model.buyerBook.incoming.IncomingBuyerDocument;
+import com.gmail.podkutin.dmitry.bookconverter.model.buyerBook.ResultBuyersDetails;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

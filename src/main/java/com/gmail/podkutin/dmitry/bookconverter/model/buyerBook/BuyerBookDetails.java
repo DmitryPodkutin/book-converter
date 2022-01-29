@@ -1,4 +1,4 @@
-package com.gmail.podkutin.dmitry.salesbookconverter.model;
+package com.gmail.podkutin.dmitry.bookconverter.model.buyerBook;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
 @NoArgsConstructor
-public class SalesBookDetails {
+public class BuyerBookDetails {
 
     @XmlAttribute(name = "Период")
     private String period;
@@ -20,5 +20,5 @@ public class SalesBookDetails {
     private String fiscalYear;
 
     @XmlElement(name = "Всего")
-    private Total total;
+    private BuyerTotal total;
 }

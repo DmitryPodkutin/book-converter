@@ -1,4 +1,4 @@
-package com.gmail.podkutin.dmitry.salesbookconverter.storage;
+package com.gmail.podkutin.dmitry.bookconverter.storage;
 
 import org.springframework.stereotype.Repository;
 

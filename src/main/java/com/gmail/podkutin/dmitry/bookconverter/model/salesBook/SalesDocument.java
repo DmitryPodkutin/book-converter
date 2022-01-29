@@ -1,5 +1,7 @@
-package com.gmail.podkutin.dmitry.salesbookconverter.model;
+package com.gmail.podkutin.dmitry.bookconverter.model.salesBook;
 
+import com.gmail.podkutin.dmitry.bookconverter.model.InformationAboutOrganization;
+import com.gmail.podkutin.dmitry.bookconverter.model.Signer;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,10 +14,10 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
 @NoArgsConstructor
-public class Document {
+public class SalesDocument {
 
     @XmlElement(name = "СвПродав")
-    private SellerInformation sellerInformation;
+    private InformationAboutOrganization informationAboutOrganization;
 
     @XmlElement(name = "СвКнПрод")
     private SalesBookDetails salesBookDetails;
@@ -29,10 +31,14 @@ public class Document {
     @XmlElement(name = "Подписант")
     private Signer signer;
 
-    public Document(SellerInformation sellerInformation, SalesBookDetails salesBookDetails, String attribute, Signer signer) {
-        this.sellerInformation = sellerInformation;
+    public SalesDocument(InformationAboutOrganization informationAboutOrganization, SalesBookDetails salesBookDetails, String attribute, Signer signer) {
+        this.informationAboutOrganization = informationAboutOrganization;
         this.salesBookDetails = salesBookDetails;
         this.attribute = attribute;
         this.signer = signer;
+    }
+
+    public SalesDocument(InformationAboutOrganization informationAboutOrganization) {
+        this.informationAboutOrganization = informationAboutOrganization;
     }
 }

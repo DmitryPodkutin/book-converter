@@ -1,4 +1,4 @@
-package com.gmail.podkutin.dmitry.salesbookconverter.model;
+package com.gmail.podkutin.dmitry.bookconverter.model.salesBook;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,14 +12,14 @@ import javax.xml.bind.annotation.*;
 public class SalesBook {
 
     @XmlAttribute(name = "xmlns:xsi")
-    private  String attribute;
+    private String attribute;
 
     @XmlElement(name = "Документ")
-    private Document document;
+    private SalesDocument salesDocument;
 
-    public SalesBook(String attribute, Document document) {
-        this.attribute = attribute;
-        this.document = document;
+    public SalesBook(SalesDocument salesDocument) {
+        this.attribute = "http://www.w3.org/2001/XMLSchema-instance";
+        this.salesDocument = salesDocument;
     }
 }
 

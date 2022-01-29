@@ -1,4 +1,4 @@
-package com.gmail.podkutin.dmitry.salesbookconverter;
+package com.gmail.podkutin.dmitry.bookconverter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

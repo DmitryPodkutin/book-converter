@@ -1,4 +1,4 @@
-package com.gmail.podkutin.dmitry.salesbookconverter.model.buyerBook.result;
+package com.gmail.podkutin.dmitry.bookconverter.model.buyerBook.incoming;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,16 +9,12 @@ import javax.xml.bind.annotation.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
 @NoArgsConstructor
-public class ResultBuyerBook {
+public class IncomingBuyerBook {
 
     @XmlAttribute(name = "xmlns:xsi")
     private  String attribute;
 
     @XmlElement(name = "Документ")
-    private ResultBuyerDocument document;
-
-    public ResultBuyerBook(ResultBuyerDocument document) {
-        this.document = document;
-    }
+    private IncomingBuyerDocument document;
 }
 
