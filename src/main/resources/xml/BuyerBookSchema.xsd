@@ -1,0 +1,102 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace"
+               schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+    <xs:element name="Файл">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Документ">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="СвПокуп">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="СведИП">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="ФИОИП"/>
+                                                </xs:sequence>
+                                                <xs:attribute name="ИННФЛ" type="xs:integer" use="required"/>
+                                                <xs:attribute name="СвГосРегИП" type="xs:string"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="СвКнПок">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Всего">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="ВтЧисле">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="НалСт"/>
+                                                                <xs:element name="СумНал"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute name="СтТовБезНДС" type="xs:decimal"  use="required"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="СтТовУчНалВсего" type="xs:decimal" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="Период" type="xs:int" use="required"/>
+                                    <xs:attribute name="ОтчетГод" type="xs:int" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:choice maxOccurs="unbounded">
+                                <xs:element name="СвПокупка">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="ВтчСтоимПок" minOccurs="0">
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element name="НалСт"/>
+                                                        <xs:element name="СумНал"/>
+                                                    </xs:sequence>
+                                                    <xs:attribute name="СтТовБезНДС" type="xs:decimal" use="required"/>
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element name="НомерТД" minOccurs="0"/>
+                                            <xs:element name="ДатаОплСчФПрод" minOccurs="0"/>
+                                        </xs:sequence>
+                                        <xs:attribute name="НомПП" type="xs:string" use="required"/>
+                                        <xs:attribute name="ДатаСчФ" type="xs:string" use="required"/>
+                                        <xs:attribute name="НомерСчФ" type="xs:string" use="required"/>
+                                        <xs:attribute name="ДатаПринУчет" type="xs:string" use="required"/>
+                                        <xs:attribute name="НаимПрод" type="xs:string" use="required"/>
+                                        <xs:attribute name="ИННЮЛ" type="xs:integer"/>
+                                        <xs:attribute name="ИННФЛ" type="xs:integer"/>
+                                        <xs:attribute name="КПП" type="xs:integer"/>
+                                        <xs:attribute name="КодПроисх" type="xs:integer"/>
+                                        <xs:attribute name="СтТовУчНалВсего" type="xs:decimal" use="required"/>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:choice>
+                            <xs:element name="Подписант">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="ФИО">
+                                            <xs:complexType>
+                                                <xs:attribute name="Фамилия" type="xs:string" use="required"/>
+                                                <xs:attribute name="Имя" type="xs:string" use="required"/>
+                                                <xs:attribute name="Отчество" type="xs:string" use="required"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="ПрПодп" type="xs:int" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="КНД" type="xs:int" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="ИдФайл" type="xs:string"/>
+            <xs:attribute name="ВерсФорм" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
