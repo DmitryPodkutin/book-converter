@@ -1,4 +1,4 @@
-package com.gmail.podkutin.dmitry.salesbookconverter.model;
+package com.gmail.podkutin.dmitry.bookconverter.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
