@@ -16,6 +16,7 @@ import com.gmail.podkutin.dmitry.bookconverter.model.salesBook.SalesTotal;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import static com.gmail.podkutin.dmitry.bookconverter.util.NdsUtil.getNds;
 import static com.gmail.podkutin.dmitry.bookconverter.util.NdsUtil.getTotalWithoutNds;
@@ -39,14 +40,11 @@ public class ConverterObject {
     }
 
     private List<ResultBuyersDetails> getConvertedBuyersDetailsList(List<BuyersDetails> buyersDetails) { //https://javaee.github.io/jaxb-v2/doc/user-guide/ch03.html#annotating-your-classes-mapping-interfaces
-        List<ResultBuyersDetails> resultList = new LinkedList<>();
-        for (BuyersDetails details : buyersDetails) {
+       return buyersDetails.stream().peek(details -> {
             if (details.getBuyersName().equals("ИП Подкутин Дмитрий Геннадьевич")) {
                 details.setCodeTypeOfOperation("22");
             }
-            resultList.add(new ResultBuyersDetails(details));
-        }
-        return resultList;
+        }).map(ResultBuyersDetails::new).collect(Collectors.toList());
     }
 
     private List<SalesDetails> getConvertedSalesDetailsList(SalesDocument salesDocument) {
