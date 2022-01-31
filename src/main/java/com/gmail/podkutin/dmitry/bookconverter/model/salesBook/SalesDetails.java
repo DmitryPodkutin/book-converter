@@ -8,6 +8,9 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
+import static com.gmail.podkutin.dmitry.bookconverter.util.NdsUtil.getNds;
+import static com.gmail.podkutin.dmitry.bookconverter.util.NdsUtil.getTotalWithoutNds;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Data
 @NoArgsConstructor
@@ -52,21 +55,21 @@ public class SalesDetails {
     @XmlElement(name = "КодВидОпер")
     private final String codeTypeOfOperation = "01";
 
-    public SalesDetails(String number, String invoiceNumber, String dateInvoice, String buyersName, String INN, String KPP,
-                        String codeOfOKV, String valueOfGoodsIncludingTaxRub, String valueOfGoodsExcludingTaxRub, String taxAmount) {
-        this.number = number;
-        this.invoiceNumber = invoiceNumber;
-        this.dateInvoice = dateInvoice;
-        this.buyersName = buyersName;
-        if (KPP != null) {
-            this.INN = INN;
+    public SalesDetails(SalesDetails details) {
+        this.number = details.getNumber();
+        this.invoiceNumber = details.getInvoiceNumber();
+        this.dateInvoice = details.getDateInvoice();
+        this.buyersName = details.buyersName;
+        if (details.getKPP() != null) {
+            this.INN = details.getINN();
         } else {
-            this.INNFL = INN;
+            this.INNFL = details.getINNFL();
         }
-        this.KPP = KPP;
-        this.codeOfOKV = codeOfOKV;
-        this.valueOfGoodsIncludingTaxRub = valueOfGoodsIncludingTaxRub;
-        this.valueOfGoodsExcludingTax = valueOfGoodsExcludingTaxRub;
-        this.taxAmount = taxAmount;
+        this.KPP = details.getKPP();
+        this.codeOfOKV = details.codeOfOKV;
+        this.valueOfGoodsIncludingTaxRub = details.getValueOfGoodsIncludingTax();
+        this.valueOfGoodsExcludingTax = getTotalWithoutNds(String.valueOf(details.getValueOfGoodsIncludingTax()));
+        this.taxAmount = getNds(details.getValueOfGoodsIncludingTax());
+        this.valueOfGoodsIncludingTax = null;
     }
 }

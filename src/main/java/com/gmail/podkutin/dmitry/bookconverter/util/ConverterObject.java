@@ -13,7 +13,6 @@ import com.gmail.podkutin.dmitry.bookconverter.model.salesBook.SalesDetails;
 import com.gmail.podkutin.dmitry.bookconverter.model.salesBook.SalesDocument;
 import com.gmail.podkutin.dmitry.bookconverter.model.salesBook.SalesTotal;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -40,24 +39,20 @@ public class ConverterObject {
     }
 
     private List<ResultBuyersDetails> getConvertedBuyersDetailsList(List<BuyersDetails> buyersDetails) { //https://javaee.github.io/jaxb-v2/doc/user-guide/ch03.html#annotating-your-classes-mapping-interfaces
-       return buyersDetails.stream().peek(details -> {
-            if (details.getBuyersName().equals("ИП Подкутин Дмитрий Геннадьевич")) {
-                details.setCodeTypeOfOperation("22");
-            }
-        }).map(ResultBuyersDetails::new).collect(Collectors.toList());
+        return buyersDetails.stream().peek(details -> {
+                    if (details.getBuyersName().equals("ИП Подкутин Дмитрий Геннадьевич")) {
+                        details.setCodeTypeOfOperation("22");
+                    }
+                })
+                .map(ResultBuyersDetails::new)
+                .collect(Collectors.toList());
     }
 
     private List<SalesDetails> getConvertedSalesDetailsList(SalesDocument salesDocument) {
         final AtomicInteger counter = new AtomicInteger(0);
-        List<SalesDetails> resultList = new LinkedList<>();
-        for (SalesDetails salesDetail : salesDocument.getSalesDetailsList()) {
-            salesDetail.setNumber(String.valueOf(counter.incrementAndGet()));
-            salesDetail.setValueOfGoodsIncludingTaxRub(salesDetail.getValueOfGoodsIncludingTax());
-            salesDetail.setValueOfGoodsExcludingTax(getTotalWithoutNds(String.valueOf(salesDetail.getValueOfGoodsIncludingTax())));
-            salesDetail.setTaxAmount(getNds(salesDetail.getValueOfGoodsIncludingTax()));
-            salesDetail.setValueOfGoodsIncludingTax(null);
-            resultList.add(salesDetail);
-        }
-        return resultList;
+        return salesDocument.getSalesDetailsList().stream()
+                .peek((e) -> e.setNumber(String.valueOf(counter.incrementAndGet())))
+                .map(SalesDetails::new)
+                .collect(Collectors.toList());
     }
 }
